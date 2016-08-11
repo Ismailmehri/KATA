@@ -1,0 +1,34 @@
+
+    <div class="container">
+        <div class="page-header">
+            <h2>Bank account kata</h2>
+        </div>
+          <div>
+            <div class="col-xs-2"></div>
+            <div class="col-xs-4">
+              <div class="input-group">
+                <input type="text" class="form-control margin-top-15" ng-model="userCtrl.user.firstName" placeholder="FirstName" />
+                <input type="text" class="form-control margin-top-15" ng-model="userCtrl.user.lastName" placeholder="LastName" />
+                <input type="text" class="form-control margin-top-15" ng-model="userCtrl.user.login" placeholder="Login" />
+              </div>
+                <button ng-disabled="!userCtrl.user.firstName || !userCtrl.user.lastName || !userCtrl.user.login" ng-click="userCtrl.signIn()" class="btn btn-default margin-top-15 pull-right" type="button" title="Add">
+                Sign In
+              </button>
+            </div>
+            <div class="col-xs-4">
+              <div>
+                  <input type="text" class="form-control margin-top-15" ng-model="userCtrl.user.login" placeholder="Login" />
+              </div>
+                <button ng-click="userCtrl.login()"  ng-disabled="!userCtrl.user.login"
+                        class="btn btn-default margin-top-15 pull-right"
+                        type="button">
+                Login
+              </button>
+            </div>
+          </div>
+      </div>
+        <div class="row margin-top-15">
+            <div class="col-xs-2"></div>
+            <div ng-if="userCtrl.loginError" class="col-xs-8 alert alert-danger" role="alert">Sorry, that login does not exist! Please try again.</div>
+            <div ng-if="userCtrl.signInError" class="col-xs-8 alert alert-danger" role="alert">please try another login</div>
+        </div>

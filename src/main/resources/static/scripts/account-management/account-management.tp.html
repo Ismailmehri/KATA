@@ -1,0 +1,91 @@
+
+    <div class="container">
+        <div>
+            <button class="pull-right btn btn-info pull-right" type="button" title="Logout"
+              ng-click="accountCtrl.logout()">
+              <span class="glyphicon glyphicons-parents">Logout({{accountCtrl.userLogin}})</span>
+            </button>
+      <div class="page-header">
+        <h2>Bank account kata</h2>
+      </div>
+            <div ng-if="accountCtrl.account">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-8">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Balance</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{accountCtrl.account.client.firstName}}</td>
+                                    <td>{{accountCtrl.account.client.lastName}}</td>
+                                    <td>{{accountCtrl.account.balance}}</td>
+                                    <td>
+                                        <button class="btn btn-success" type="button" ng-disabled="accountCtrl.depositOrWithdraw" ng-click="accountCtrl.changeOperationType()">
+                                            <span>Deposit</span>
+                                        </button>
+                                        <button class="btn btn-success" type="button" ng-disabled="!accountCtrl.depositOrWithdraw" ng-click="accountCtrl.changeOperationType()">
+                                            <span>Withdraw</span>
+                                        </button>
+                                    </td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-if="accountCtrl.depositOrWithdraw">
+                        <span>Deposit</span>
+                        <div class="input-group">
+                            <input type="number" class="form-control margin-top-15" ng-model="accountCtrl.amount" step="0.5">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default margin-top-15" ng-click="accountCtrl.deposit()" type="button" ng-disabled="accountCtrl.amount < 0.5" title="Deposit">
+                                <span class="glyphicon glyphicon-plus"></span>
+                              </button>
+                            </span>
+                          </div>
+                    </div>
+                    <div ng-if="!accountCtrl.depositOrWithdraw">
+                        <span>Withdraw</span>
+                        <div class="input-group">
+                            <input type="number" class="form-control margin-top-15" ng-model="accountCtrl.amount" step="0.5">
+                            <span class="input-group-btn">
+                              <button class="btn btn-default margin-top-15" type="button" ng-click="accountCtrl.withdraw()" ng-disabled="accountCtrl.amount < 0.5 || (accountCtrl.amount > accountCtrl.account.balance)" title="Withdraw">
+                                <span class="glyphicon glyphicon-minus"></span>
+                              </button>
+                            </span>
+                          </div>
+                    </div>
+                    <div class="margin-top-15" ng-if="accountCtrl.userHistory.length > 0">
+                        <span>User History</span>
+                        <div class="table-responsive margin-top-15">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Balance</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="history in accountCtrl.userHistory track by $index">
+                                    <td>{{$index}}</td>
+                                    <td>{{history.balance}}</td>
+                                    <td>{{history.amount}}</td>
+                                    <td>{{history.operationDate | date:'dd-MM-yyyy hh:mm'}}</td>
+                                    <td>{{history.operationType}}</td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
