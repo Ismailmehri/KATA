@@ -21,10 +21,18 @@ public interface AccountService
     /**
      * Returns the {@link User} account
      *
-     * @param userId the {@link User} ID
+     * @param login the {@link User} login
      * @return {@link User}
      */
-    public Account getUserAccount(Long userId);
+    public Account getUserAccount(String login);
+    
+        /**
+     * Returns the {@link User} account
+     *
+     * @param id the {@link User} ID
+     * @return {@link User}
+     */
+    public Account getUserAccount(Long id);
     
     /**
      * Make a deposit

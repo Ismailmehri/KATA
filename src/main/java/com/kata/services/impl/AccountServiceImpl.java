@@ -75,9 +75,13 @@ public class AccountServiceImpl implements AccountService
     }
 
     @Override
-    public Account getUserAccount(Long userId)
+    public Account getUserAccount(String login)
     {
-        return accountRepository.findClient(userId);
+        return accountRepository.findClientAccountByLogin(login);
     }
-    
+
+    @Override
+    public Account getUserAccount(Long id) {
+        return accountRepository.findClient(id);
+    }
 }

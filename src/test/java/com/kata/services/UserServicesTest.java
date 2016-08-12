@@ -30,20 +30,19 @@ public class UserServicesTest extends TransactionalIntegrationTest
             throws AccountException
     {
         //Given
-        Long userId = 2L;
-        Account userAccount = accountService.getUserAccount(userId);
+        String login = "login2";
+        Account userAccount = accountService.getUserAccount(login);
         Assert.assertNull(userAccount);
         
         //When
         User user = new User();
-        user.setId(userId);
-        user.setLogin("login");
+        user.setLogin(login);
         userService.createUser(user);
         
         //Then
-        userAccount = accountService.getUserAccount(userId);
+        userAccount = accountService.getUserAccount(login);
         Assert.assertNotNull(userAccount);
-        Assert.assertEquals(userId, userAccount.getClient().getId());
+        Assert.assertEquals(login, userAccount.getClient().getLogin());
     }
     
     @Test(expected = AccountException.class)
